@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/UI/style.uss?fileID=7433441132597879392&amp;guid=596e2c7fec270084dbf19610828569f5&amp;type=3#style" />
+    <ui:VisualElement name="MainContainer" style="align-items: center; justify-content: space-around; background-color: rgb(0, 0, 0); max-height: 100%; flex-grow: 1;">
+        <ui:VisualElement style="background-color: rgba(48, 48, 48, 0.58); max-width: initial; max-height: 100%; flex-grow: 1; align-items: stretch; justify-content: center; width: 40%;">
+            <ui:VisualElement style="align-items: stretch; justify-content: center; background-color: rgb(41, 41, 41); max-height: 100%; flex-grow: 1;">
+                <ui:Button text="START" display-tooltip-when-elided="true" name="Start" class="BasicButton" />
+                <ui:Button text="Button" display-tooltip-when-elided="true" name="Load" class="BasicButton" />
+                <ui:Button text="CREDIT" display-tooltip-when-elided="true" name="Credit" class="BasicButton" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
