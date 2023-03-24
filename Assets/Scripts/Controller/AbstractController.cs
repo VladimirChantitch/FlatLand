@@ -1,18 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbstractController : MonoBehaviour
+namespace flat_land.controller
 {
-    // Start is called before the first frame update
-    void Start()
+    public abstract class AbstractController : MonoBehaviour
     {
-        
-    }
+        internal abstract void Interacts();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        internal abstract void MouseClicked();
+
+        internal abstract void Move(Vector2 direction);
+
+        internal abstract void PressSpaceBar();
     }
 }
+

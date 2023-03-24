@@ -10,6 +10,8 @@ namespace flat_land.input
     {
         public event Action onClick;
         public event Action onInteract;
+        public event Action onSpaceBar;
+        public event Action<Vector2> onMove;
 
         Inputs inputActions = null;
 
@@ -18,8 +20,23 @@ namespace flat_land.input
             inputActions = new Inputs();
             inputActions.Enable();
 
+            inputActions.Actions.Interact.performed += i => onInteract?.Invoke();
+            inputActions.Actions.MouseClick.performed += i => onClick?.Invoke();
+            inputActions.Actions.Bar.performed += i => onSpaceBar?.Invoke(); 
+        }
 
+        private void Update()
+        {
+            CheckIfMoving();
+        }
 
+        private void CheckIfMoving()
+        {
+            Vector2 moveVector = inputActions.Actions.Move.ReadValue<Vector2>();
+            if (moveVector.x != 0 || moveVector.y != 0) 
+            {
+                onMove?.Invoke(moveVector);
+            }
         }
 
         private void OnDisable()

@@ -38,7 +38,7 @@ namespace flat_land.UI
 
         private void GoTo(GameState state)
         {
-
+            onLoadNewScene?.Invoke(state);
         }
     }
 }
