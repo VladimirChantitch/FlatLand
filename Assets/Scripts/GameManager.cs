@@ -1,3 +1,4 @@
+using flat_land.clicker;
 using flat_land.UI;
 using System;
 using System.Collections;
@@ -10,6 +11,7 @@ namespace flat_land.gameManager
     public class GameManager : MonoBehaviour
     {
         UI_Manager uI_Manager = null;
+        public GameState state;
 
         private void Awake()
         {
@@ -24,7 +26,7 @@ namespace flat_land.gameManager
             uI_Manager.onLoadNewScene += (state) => LoadNextScene(state);
         }
 
-        private void LoadNextScene(GameState state)
+        public void LoadNextScene(GameState state)
         {
             switch (state)
             {
@@ -44,6 +46,11 @@ namespace flat_land.gameManager
                     SceneManager.LoadScene("3D");
                     break;
             }
+        }
+
+        public static void GoBackToHub()
+        {
+            SceneManager.LoadScene("3D");
         }
     }
 
