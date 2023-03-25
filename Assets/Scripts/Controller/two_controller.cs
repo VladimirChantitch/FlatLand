@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,12 +25,17 @@ namespace flat_land.controller
 
         internal override void Move(Vector2 direction)
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Maybe some action could be triggered");
         }
 
         internal override void PressSpaceBar()
         {
-            throw new System.NotImplementedException();
+            HandleJump();
+        }
+
+        private void HandleJump()
+        {
+            throw new NotImplementedException();
         }
     }
 }

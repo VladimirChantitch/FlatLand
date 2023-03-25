@@ -1,5 +1,6 @@
 using Cinemachine;
 using System;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 namespace flat_land.camera
@@ -9,13 +10,14 @@ namespace flat_land.camera
         Vector3 startingRotation;
 
         Vector2 mouseDelta;
-        [SerializeField] private float horizontalSpeed = 10f;
+        [SerializeField] private float horizontalSpeed;
         [SerializeField] private float verticalSpeed = 10f;
         [SerializeField] private float clampAngle = 80f;
 
-        public void SetMousePosition(Vector2 mousePosition)
+        public void SetMousePosition(Vector2 mousePosition, float horizontalSpeed)
         {
             this.mouseDelta = mousePosition;
+            this.horizontalSpeed = horizontalSpeed;
         }
 
         protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
