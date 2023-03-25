@@ -1,4 +1,5 @@
 using flat_land.gameManager;
+using flat_land.interaction;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace flat_land.UI
         VisualElement currentRoot = null;
 
         StartMenu startMenu = null;
+        Hub hub = null;
 
         public event Action<GameState> onLoadNewScene;
 
@@ -28,6 +30,12 @@ namespace flat_land.UI
             {
                 HandleStartMenu();
             }
+
+            if (state == GameState.troisD)
+            {
+                hub = currentRoot.Q<Hub>("hub");
+                hub.Init(currentRoot);
+            }
         }
 
         private void HandleStartMenu()
@@ -39,6 +47,16 @@ namespace flat_land.UI
         private void GoTo(GameState state)
         {
             onLoadNewScene?.Invoke(state);
+        }
+
+        public void ShowPopUp(string txt)
+        {
+            hub.Show(txt);
+        }
+
+        internal void HidePopUp()
+        {
+            hub.Hide();
         }
     }
 }

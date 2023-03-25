@@ -1,7 +1,10 @@
 using Cinemachine.Utility;
 using flat_land.camera;
+using flat_land.gameManager;
+using flat_land.interaction;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -18,6 +21,8 @@ namespace flat_land.controller
         [SerializeField] Transform forwardTransform = null;
         [SerializeField] float RotationSpeed = 10;
 
+        [SerializeField] Transform interactTransform = null;
+
         private void Awake()
         {
             rb = GetComponent<Rigidbody>(); 
@@ -25,8 +30,16 @@ namespace flat_land.controller
 
         internal override void Interacts()
         {
-
+            Collider[] colliders = Physics.OverlapSphere(interactTransform.position, 1f);
+            colliders.ToList().ForEach(c =>
+            {
+                if (c.gameObject.layer == 30)
+                {
+                    GameManager.LoadNextScene(c.GetComponent<GateInteraction>().Interact());
+                }
+            });
         }
+
         internal override void MouseClicked()
         {
 
@@ -37,10 +50,6 @@ namespace flat_land.controller
             if (pOVExt != null)
             {
                 pOVExt.SetMousePosition(direction, RotationSpeed);
-                //Vector3 newRot = transform.rotation.eulerAngles;
-                //newRot.y += direction.x * Time.deltaTime * RotationSpeed;
-
-                //transform.rotation = Quaternion.Euler(newRot);
             }
         }
 

@@ -1,4 +1,5 @@
 using flat_land.clicker;
+using flat_land.interaction;
 using flat_land.UI;
 using System;
 using System.Collections;
@@ -11,22 +12,29 @@ namespace flat_land.gameManager
     public class GameManager : MonoBehaviour
     {
         UI_Manager uI_Manager = null;
+        [SerializeField] InteractionPopUp interactPopUp = null;
         public GameState state;
 
         private void Awake()
         {
             uI_Manager = GetComponentInChildren<UI_Manager>();
 
-            InitEvents();
             Cursor.visible = false;
+        }
+
+        private void Start()
+        {
+            InitEvents();
         }
 
         private void InitEvents()
         {
             uI_Manager.onLoadNewScene += (state) => LoadNextScene(state);
+            interactPopUp.onInteract += (txt) => uI_Manager.ShowPopUp(txt);
+            interactPopUp.onStopInteract += () => uI_Manager.HidePopUp();
         }
 
-        public void LoadNextScene(GameState state)
+        public static void LoadNextScene(GameState state)
         {
             switch (state)
             {

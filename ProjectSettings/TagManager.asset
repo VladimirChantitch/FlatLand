@@ -11,7 +11,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - Interactor
   - 
   - 
   - Check
@@ -35,7 +35,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Gate
   - 
   m_SortingLayers:
   - name: Back

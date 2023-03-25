@@ -81,7 +81,7 @@ namespace flat_land.runner
 
         private void DeleteAnOldChunk(int index = 0)
         {
-            if (chunks[index] != null)
+            if (chunks[index] != null || chunks[nextChunckIndexCursor] != null)
             {
                 Destroy(chunks[nextChunckIndexCursor].gameObject);
             }
