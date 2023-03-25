@@ -18,7 +18,9 @@ namespace flat_land.runner
         [SerializeField] float ScrollSpeed = 10f;
 
         public event Action onPlayerHit;
+        public event Action onPlayerWin;
 
+        bool canGo = true;
 
         private void Awake()
         {
@@ -33,14 +35,29 @@ namespace flat_land.runner
 
         private void Update()
         {
-            Vector3 translation = -Vector3.right * ScrollSpeed * Time.deltaTime;
-            transform.position = transform.position + translation;
+            if (canGo)
+            {
+                Vector3 translation = -Vector3.right * ScrollSpeed * Time.deltaTime;
+                transform.position = transform.position + translation;
+            }
         }
 
         private void BindChunkEvent(Chunk chunk)
         {
             chunk.onPLayerEnterChunk += () => LoadANewChunk(chunk.End);
-            chunk.onPlayerHit += () => onPlayerHit?.Invoke();
+            chunk.onPlayerHit += () => {
+                canGo = false;
+                onPlayerHit?.Invoke();
+            };
+            chunk.onPlayerWin += () => {
+                canGo = false;
+                onPlayerWin?.Invoke();
+            };
+        }
+
+        private void Chunk_onPlayerWin()
+        {
+            throw new NotImplementedException();
         }
 
         private void LoadANewChunk(Transform end)

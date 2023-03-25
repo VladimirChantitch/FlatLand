@@ -1,3 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Scripts/UI/style.uss?fileID=7433441132597879392&amp;guid=596e2c7fec270084dbf19610828569f5&amp;type=3#style" />
+    <ui:Button text="Button" display-tooltip-when-elided="true" name="backToHubWin" style="background-image: url(&apos;project://database/Assets/Asset2D/Flatland_WIN.png?fileID=2800000&amp;guid=2310c9b3e884ece41ae51bdb05d103e8&amp;type=3#Flatland_WIN&apos;); flex-grow: 1; display: none;" />
+    <ui:Button text="Button" display-tooltip-when-elided="true" name="backToHubLoose" style="background-image: url(&apos;project://database/Assets/Asset2D/Flatland_loose.png?fileID=2800000&amp;guid=36ff3484eaa4dec438b1439ac8032551&amp;type=3#Flatland_loose&apos;); flex-grow: 1; display: none;" />
+    <ui:Button text="Button" display-tooltip-when-elided="true" name="dialogue" style="position: absolute; left: 5%; top: 10%; width: 25%; flex-grow: 1; height: 25%; display: none;" />
 </ui:UXML>

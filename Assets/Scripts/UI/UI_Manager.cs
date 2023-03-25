@@ -18,16 +18,11 @@ namespace flat_land.UI
         StartMenu startMenu = null;
         Hub hub = null;
         DialogueElement dialogue = null;
-
-
-        VisualElement winScreen = null;
-        VisualElement looseScreen = null;
         
         Button backToHubWin = null;
         Button backToHubLoose = null;
 
-        Button win = null;
-        Button loose = null;
+        Button endDialogue = null;
 
         public event Action<GameState> onLoadNewScene;
         public event Action<bool> onAnsweredDialgue;
@@ -52,16 +47,15 @@ namespace flat_land.UI
 
             if (state == GameState.deuxD)
             {
-                winScreen = currentRoot.Q<VisualElement>("winScree");
-                looseScreen = currentRoot.Q<VisualElement>("winScree");
-
                 backToHubLoose = currentRoot.Q<Button>("backToHubLoose");
                 backToHubWin = currentRoot.Q<Button>("backToHubWin");
 
-                win = currentRoot.Q<Button>("win");
-                loose = currentRoot.Q<Button>("loose");
+                endDialogue = currentRoot.Q<Button>("dialogue");
 
-                backToHubLoose.clicked += () => onLoadNewScene?.Invoke(GameState.troisD);
+                backToHubWin.clicked += () => {
+                    DmensionalGod.IncreaseSuccessCounter();
+                    onLoadNewScene?.Invoke(GameState.troisD);        
+                };
                 backToHubLoose.clicked += () => onLoadNewScene?.Invoke(GameState.troisD);
             }
 
@@ -103,22 +97,24 @@ namespace flat_land.UI
 
         internal void handleDialogue(DialogueStep step)
         {
-            dialogue.InitNewDialogue(step);
+            dialogue?.InitNewDialogue(step);
         }
 
         internal void handleDialogueFinished(DialogueStep step, bool b)
         {
             if (b)
             {
-                winScreen.style.display = DisplayStyle.Flex;
+                backToHubWin.style.display = DisplayStyle.Flex;
+                endDialogue.style.display = DisplayStyle.Flex;
                 StyleBackground sstyle = new StyleBackground(step.npc.dialogueSprite);
-                win.style.backgroundImage = sstyle;
+                endDialogue.style.backgroundImage = sstyle;
             }
             else
             {
-                looseScreen.style.display = DisplayStyle.Flex;
+                backToHubLoose.style.display = DisplayStyle.Flex;
+                endDialogue.style.display = DisplayStyle.Flex;  
                 StyleBackground sstyle = new StyleBackground(step.npc.dialogueSprite);
-                loose.style.backgroundImage = sstyle;
+                endDialogue.style.backgroundImage = sstyle;
             }
         }
     }

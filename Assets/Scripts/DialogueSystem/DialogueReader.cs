@@ -55,6 +55,7 @@ namespace flat_land.dialogue
 
         public void GetNextDialogue()
         {
+            if (dialogueSteps.Count == 0) return;
             if (dialogueSteps.Count < currentDialogue) GetWinDialogue();
             onDialogueSelected?.Invoke(dialogueSteps[currentDialogue]);
             currentDialogue += 1;
@@ -62,12 +63,12 @@ namespace flat_land.dialogue
 
         public void GetWinDialogue()
         {
-            onFinished?.Invoke(win, false);
+            onFinished?.Invoke(win, true);
         }
 
         public void GetLooseDialogue()
         {
-            onFinished?.Invoke(loose, true);
+            onFinished?.Invoke(loose, false);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace flat_land.runner
         public event Action onPLayerExitChunk;
 
         public event Action onPlayerHit;
+        public event Action onPlayerWin;
 
         float chunckSize;
 
@@ -29,6 +30,11 @@ namespace flat_land.runner
             GetComponentsInChildren<Death>().ToList().ForEach(d =>
             {
                 d.onPlayerHit += () => onPlayerHit?.Invoke();
+            });
+
+            GetComponentsInChildren<RunnerWin>().ToList().ForEach(runnerWin =>
+            {
+                runnerWin.onPLayerWin += () => onPlayerWin?.Invoke();
             });
 
             CalculateSize();

@@ -35,10 +35,18 @@ namespace flat_land.gameManager
 
             if (state == GameState.deuxD)
             {
-                levelController.onPlayerHit += () => LooseMiniGame();
+                levelController.onPlayerHit += () => {
+                    LooseMiniGame();
+                };
+                levelController.onPlayerWin += () => WinMiniGame();
             }
 
             Cursor.visible = false;
+        }
+
+        private void WinMiniGame()
+        {
+            dialogueReader.GetWinDialogue();
         }
 
         private void Start()
