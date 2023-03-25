@@ -1,3 +1,4 @@
+using flat_land.dialogue;
 using flat_land.gameManager;
 using flat_land.interaction;
 using System;
@@ -16,8 +17,10 @@ namespace flat_land.UI
 
         StartMenu startMenu = null;
         Hub hub = null;
+        DialogueElement dialogue = null;
 
         public event Action<GameState> onLoadNewScene;
+        public event Action<bool> onAnsweredDialgue;
 
         private void Awake()
         {
@@ -35,6 +38,13 @@ namespace flat_land.UI
             {
                 hub = currentRoot.Q<Hub>("hub");
                 hub.Init(currentRoot);
+            }
+
+            if (state != GameState.start)
+            {
+                dialogue = currentRoot.Q<DialogueElement>("dialogue");
+                dialogue.onFalseAnswer += () => onAnsweredDialgue?.Invoke(false);
+                dialogue.onTrueAnswer += () => onAnsweredDialgue?.Invoke(true);
             }
         }
 
@@ -57,6 +67,11 @@ namespace flat_land.UI
         internal void HidePopUp()
         {
             hub.Hide();
+        }
+
+        internal void handleDialogue(DialogueStep step)
+        {
+            throw new NotImplementedException();
         }
     }
 }
