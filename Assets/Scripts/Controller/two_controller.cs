@@ -18,29 +18,30 @@ namespace flat_land.controller
         [SerializeField] Transform groundTransform;
         [SerializeField] LayerMask whatsGround;
 
-         private void Awake()
+
+        private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
         }
 
         internal override void Interacts()
         {
-            throw new System.NotImplementedException();
+
         }
 
         internal override void MouseClicked()
         {
-            Debug.Log("Maybe some action could be triggered");
+
         }
 
         internal override void MouseMove(Vector2 direction)
         {
-            Debug.Log("Maybe some action could be triggered");
+
         }
 
         internal override void Move(Vector2 direction)
         {
-            Debug.Log("Maybe some action could be triggered");
+
         }
 
         internal override void PressSpaceBar()
@@ -52,11 +53,9 @@ namespace flat_land.controller
         {
             if (timer + jumpTimer <= Time.time)
             {
-                Debug.Log("ho");
                 timer = Time.time;
                 if (CheckIsGrounded())
                 {
-                    Debug.Log("hey");
                     isGrounded = true;
                     Vector3 direction = Vector3.up;
                     rb.velocity = direction * jumpForce;
@@ -69,6 +68,11 @@ namespace flat_land.controller
             isGrounded = Physics2D.Raycast(transform.position, Vector3.down, GroundHeight + 0.2f, whatsGround);
 
             return isGrounded;
+        }
+
+        internal override void IPressed()
+        {
+
         }
     }
 }

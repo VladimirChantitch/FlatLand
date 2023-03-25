@@ -9,6 +9,8 @@ namespace flat_land.controller
     {
         internal abstract void Interacts();
 
+        internal abstract void IPressed();
+
         internal abstract void MouseClicked();
 
         internal abstract void MouseMove(Vector2 direction);

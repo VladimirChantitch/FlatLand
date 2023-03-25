@@ -11,6 +11,7 @@ namespace flat_land.input
         public event Action onClick;
         public event Action onInteract;
         public event Action onSpaceBar;
+        public event Action onI;
         public event Action<Vector2> onMove;
         public event Action<Vector2> onMouseMove;
 
@@ -23,7 +24,8 @@ namespace flat_land.input
 
             inputActions.Actions.Interact.performed += i => onInteract?.Invoke();
             inputActions.Actions.MouseClick.performed += i => onClick?.Invoke();
-            inputActions.Actions.Bar.performed += i => onSpaceBar?.Invoke(); 
+            inputActions.Actions.Bar.performed += i => onSpaceBar?.Invoke();
+            inputActions.Actions.LesPointsSurLesI.performed += i => onI?.Invoke();
         }
 
         private void Update()

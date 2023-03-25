@@ -25,11 +25,11 @@ namespace flat_land.controller
 
         internal override void Interacts()
         {
-            throw new System.NotImplementedException();
+
         }
         internal override void MouseClicked()
         {
-            Debug.Log("Maybe some action could be triggered");
+
         }
 
         internal override void MouseMove(Vector2 direction)
@@ -58,7 +58,12 @@ namespace flat_land.controller
 
         internal override void PressSpaceBar()
         {
-            Debug.Log("Maybe some action could be triggered");
+
+        }
+
+        internal override void IPressed()
+        {
+
         }
     }
 }

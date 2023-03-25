@@ -71,6 +71,15 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LesPointsSurLesI"",
+                    ""type"": ""Button"",
+                    ""id"": ""85ebabc5-bb09-49a7-98fa-4050d6e7017b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27ad9be0-cb6d-4ce0-9849-1747db638782"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LesPointsSurLesI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +205,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         m_Actions_Move = m_Actions.FindAction("Move", throwIfNotFound: true);
         m_Actions_Bar = m_Actions.FindAction("Bar", throwIfNotFound: true);
         m_Actions_Look = m_Actions.FindAction("Look", throwIfNotFound: true);
+        m_Actions_LesPointsSurLesI = m_Actions.FindAction("LesPointsSurLesI", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,6 +270,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Move;
     private readonly InputAction m_Actions_Bar;
     private readonly InputAction m_Actions_Look;
+    private readonly InputAction m_Actions_LesPointsSurLesI;
     public struct ActionsActions
     {
         private @Inputs m_Wrapper;
@@ -258,6 +280,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Actions_Move;
         public InputAction @Bar => m_Wrapper.m_Actions_Bar;
         public InputAction @Look => m_Wrapper.m_Actions_Look;
+        public InputAction @LesPointsSurLesI => m_Wrapper.m_Actions_LesPointsSurLesI;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -282,6 +305,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @Look.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
+                @LesPointsSurLesI.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLesPointsSurLesI;
+                @LesPointsSurLesI.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLesPointsSurLesI;
+                @LesPointsSurLesI.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLesPointsSurLesI;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -301,6 +327,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @LesPointsSurLesI.started += instance.OnLesPointsSurLesI;
+                @LesPointsSurLesI.performed += instance.OnLesPointsSurLesI;
+                @LesPointsSurLesI.canceled += instance.OnLesPointsSurLesI;
             }
         }
     }
@@ -312,5 +341,6 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnBar(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnLesPointsSurLesI(InputAction.CallbackContext context);
     }
 }

@@ -34,6 +34,7 @@ namespace flat_land.player
                 inputManager.onSpaceBar += () => controller.PressSpaceBar();
                 inputManager.onMove += (direction) => controller.Move(direction);
                 inputManager.onMouseMove += (direction) => controller.MouseMove(direction);
+                inputManager.onI += () => controller.IPressed();
             }
         }
     }
