@@ -16,6 +16,7 @@ namespace flat_land.gameManager
             uI_Manager = GetComponentInChildren<UI_Manager>();
 
             InitEvents();
+            Cursor.visible = false;
         }
 
         private void InitEvents()

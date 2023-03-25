@@ -14,7 +14,12 @@ namespace flat_land.controller
 
         internal override void MouseClicked()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Maybe some action could be triggered");
+        }
+
+        internal override void MouseMove(Vector2 direction)
+        {
+            Debug.Log("Maybe some action could be triggered");
         }
 
         internal override void Move(Vector2 direction)

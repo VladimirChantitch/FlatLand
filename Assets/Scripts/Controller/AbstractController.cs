@@ -11,6 +11,8 @@ namespace flat_land.controller
 
         internal abstract void MouseClicked();
 
+        internal abstract void MouseMove(Vector2 direction);
+
         internal abstract void Move(Vector2 direction);
 
         internal abstract void PressSpaceBar();

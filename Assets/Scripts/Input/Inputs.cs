@@ -62,6 +62,15 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""e10294cb-94a0-4567-9046-1461e3590124"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""action"": ""Bar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4905eb78-6e5d-4a96-8728-0025be46719e"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +184,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         m_Actions_Interact = m_Actions.FindAction("Interact", throwIfNotFound: true);
         m_Actions_Move = m_Actions.FindAction("Move", throwIfNotFound: true);
         m_Actions_Bar = m_Actions.FindAction("Bar", throwIfNotFound: true);
+        m_Actions_Look = m_Actions.FindAction("Look", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -227,6 +248,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Interact;
     private readonly InputAction m_Actions_Move;
     private readonly InputAction m_Actions_Bar;
+    private readonly InputAction m_Actions_Look;
     public struct ActionsActions
     {
         private @Inputs m_Wrapper;
@@ -235,6 +257,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Actions_Interact;
         public InputAction @Move => m_Wrapper.m_Actions_Move;
         public InputAction @Bar => m_Wrapper.m_Actions_Bar;
+        public InputAction @Look => m_Wrapper.m_Actions_Look;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -256,6 +279,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @Bar.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnBar;
                 @Bar.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnBar;
                 @Bar.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnBar;
+                @Look.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -272,6 +298,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @Bar.started += instance.OnBar;
                 @Bar.performed += instance.OnBar;
                 @Bar.canceled += instance.OnBar;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
             }
         }
     }
@@ -282,5 +311,6 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnBar(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
     }
 }

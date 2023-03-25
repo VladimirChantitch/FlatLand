@@ -1,8 +1,10 @@
+using Cinemachine;
 using flat_land.controller;
 using flat_land.input;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace flat_land.player
@@ -31,6 +33,7 @@ namespace flat_land.player
                 inputManager.onInteract += () => controller.Interacts();
                 inputManager.onSpaceBar += () => controller.PressSpaceBar();
                 inputManager.onMove += (direction) => controller.Move(direction);
+                inputManager.onMouseMove += (direction) => controller.MouseMove(direction);
             }
         }
     }
