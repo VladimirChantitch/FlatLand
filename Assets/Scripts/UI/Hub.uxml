@@ -5,5 +5,8 @@
             <ui:Button text="E" display-tooltip-when-elided="true" />
             <ui:Label text="Label" display-tooltip-when-elided="true" name="popup_txt" style="font-size: 24px; margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px;" />
         </ui:VisualElement>
+        <flat_land.UI.DialogueElement name="dialogue" class="DialoguePopUp" style="flex-grow: 1; align-items: center; max-width: 100%;">
+            <flat_land.UI.CustomButton />
+        </flat_land.UI.DialogueElement>
     </flat_land.UI.Hub>
 </ui:UXML>

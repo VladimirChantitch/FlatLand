@@ -19,6 +19,16 @@ namespace flat_land.UI
         Hub hub = null;
         DialogueElement dialogue = null;
 
+
+        VisualElement winScreen = null;
+        VisualElement looseScreen = null;
+        
+        Button backToHubWin = null;
+        Button backToHubLoose = null;
+
+        Button win = null;
+        Button loose = null;
+
         public event Action<GameState> onLoadNewScene;
         public event Action<bool> onAnsweredDialgue;
 
@@ -40,11 +50,33 @@ namespace flat_land.UI
                 hub.Init(currentRoot);
             }
 
+            if (state == GameState.deuxD)
+            {
+                winScreen = currentRoot.Q<VisualElement>("winScree");
+                looseScreen = currentRoot.Q<VisualElement>("winScree");
+
+                backToHubLoose = currentRoot.Q<Button>("backToHubLoose");
+                backToHubWin = currentRoot.Q<Button>("backToHubWin");
+
+                win = currentRoot.Q<Button>("win");
+                loose = currentRoot.Q<Button>("loose");
+
+                backToHubLoose.clicked += () => onLoadNewScene?.Invoke(GameState.troisD);
+                backToHubLoose.clicked += () => onLoadNewScene?.Invoke(GameState.troisD);
+            }
+
             if (state != GameState.start)
             {
-                dialogue = currentRoot.Q<DialogueElement>("dialogue");
-                dialogue.onFalseAnswer += () => onAnsweredDialgue?.Invoke(false);
-                dialogue.onTrueAnswer += () => onAnsweredDialgue?.Invoke(true);
+                if (currentRoot != null)
+                {
+                    dialogue = currentRoot.Q<DialogueElement>("dialogue");
+                    if (dialogue != null)
+                    {
+                        dialogue.Init(currentRoot);
+                        dialogue.onFalseAnswer += () => onAnsweredDialgue?.Invoke(false);
+                        dialogue.onTrueAnswer += () => onAnsweredDialgue?.Invoke(true);
+                    }
+                }
             }
         }
 
@@ -71,7 +103,23 @@ namespace flat_land.UI
 
         internal void handleDialogue(DialogueStep step)
         {
-            throw new NotImplementedException();
+            dialogue.InitNewDialogue(step);
+        }
+
+        internal void handleDialogueFinished(DialogueStep step, bool b)
+        {
+            if (b)
+            {
+                winScreen.style.display = DisplayStyle.Flex;
+                StyleBackground sstyle = new StyleBackground(step.npc.dialogueSprite);
+                win.style.backgroundImage = sstyle;
+            }
+            else
+            {
+                looseScreen.style.display = DisplayStyle.Flex;
+                StyleBackground sstyle = new StyleBackground(step.npc.dialogueSprite);
+                loose.style.backgroundImage = sstyle;
+            }
         }
     }
 }

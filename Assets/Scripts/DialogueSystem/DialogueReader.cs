@@ -16,6 +16,7 @@ namespace flat_land.dialogue
         public int currentDialogue = 0;
 
         public event Action<DialogueStep> onDialogueSelected;
+        public event Action<DialogueStep, bool> onFinished;
         
         public void GetNextDialogue(GameState state)
         {
@@ -39,10 +40,10 @@ namespace flat_land.dialogue
                             onDialogueSelected?.Invoke(dialogueSteps[0]);
                             break;
                         case 1:
-                            onDialogueSelected?.Invoke(dialogueSteps[1]);
+                            //onDialogueSelected?.Invoke(dialogueSteps[1]);
                             break;
                         case 2:
-                            onDialogueSelected?.Invoke(dialogueSteps[2]);
+                            //onDialogueSelected?.Invoke(dialogueSteps[2]);
                             break;
                         case 3:
                             onDialogueSelected?.Invoke(dialogueSteps[3]);
@@ -61,12 +62,12 @@ namespace flat_land.dialogue
 
         public void GetWinDialogue()
         {
-            onDialogueSelected?.Invoke(win);
+            onFinished?.Invoke(win, false);
         }
 
         public void GetLooseDialogue()
         {
-            onDialogueSelected?.Invoke(loose);
+            onFinished?.Invoke(loose, true);
         }
     }
 }

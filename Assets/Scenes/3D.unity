@@ -1002,6 +1002,10 @@ PrefabInstance:
       propertyPath: interactPopUp
       value: 
       objectReference: {fileID: 346250670}
+    - target: {fileID: 7203708052231557915, guid: 8a73dbf667a9e384d9aaa39cca0ef7e4, type: 3}
+      propertyPath: dialogueReader
+      value: 
+      objectReference: {fileID: 11400000, guid: 75761ae9ac918c0429305bf37c219110, type: 2}
     - target: {fileID: 8878968445748001448, guid: 8a73dbf667a9e384d9aaa39cca0ef7e4, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1718,6 +1722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1454511722}
+  - component: {fileID: 1454511723}
   m_Layer: 0
   m_Name: DimensionalGod
   m_TagString: Untagged
@@ -1740,6 +1745,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1454511723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454511721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea3e2f2b69c8724bb7d2955a53456d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1645144908
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,6 @@ namespace flat_land.runner
         {
             if (collision.gameObject.layer == 3)
             {
-                Debug.Log("Hey");
                 onTriggerCollider?.Invoke();
             }
         }

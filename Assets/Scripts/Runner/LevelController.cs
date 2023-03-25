@@ -17,6 +17,8 @@ namespace flat_land.runner
 
         [SerializeField] float ScrollSpeed = 10f;
 
+        public event Action onPlayerHit;
+
 
         private void Awake()
         {
@@ -38,6 +40,7 @@ namespace flat_land.runner
         private void BindChunkEvent(Chunk chunk)
         {
             chunk.onPLayerEnterChunk += () => LoadANewChunk(chunk.End);
+            chunk.onPlayerHit += () => onPlayerHit?.Invoke();
         }
 
         private void LoadANewChunk(Transform end)
@@ -81,9 +84,12 @@ namespace flat_land.runner
 
         private void DeleteAnOldChunk(int index = 0)
         {
-            if (chunks[index] != null || chunks[nextChunckIndexCursor] != null)
+            if (chunks[index] != null && chunks[nextChunckIndexCursor] != null )
             {
-                Destroy(chunks[nextChunckIndexCursor].gameObject);
+                if (chunks[nextChunckIndexCursor].gameObject != null)
+                {
+                    Destroy(chunks[nextChunckIndexCursor].gameObject);
+                }
             }
         }
 

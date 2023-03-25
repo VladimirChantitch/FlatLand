@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace flat_land.runner
@@ -13,6 +14,8 @@ namespace flat_land.runner
         public event Action onPLayerEnterChunk;
         public event Action onPLayerExitChunk;
 
+        public event Action onPlayerHit;
+
         float chunckSize;
 
         public Transform Start { get => enterCollider.transform; }
@@ -22,6 +25,11 @@ namespace flat_land.runner
         {
             enterCollider.onTriggerCollider += () => onPLayerEnterChunk?.Invoke();
             exitCollider.onTriggerCollider += () => onPLayerExitChunk?.Invoke();
+
+            GetComponentsInChildren<Death>().ToList().ForEach(d =>
+            {
+                d.onPlayerHit += () => onPlayerHit?.Invoke();
+            });
 
             CalculateSize();
         }

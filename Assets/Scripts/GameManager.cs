@@ -1,6 +1,7 @@
 using flat_land.clicker;
 using flat_land.dialogue;
 using flat_land.interaction;
+using flat_land.runner;
 using flat_land.UI;
 using System;
 using System.Collections;
@@ -15,6 +16,7 @@ namespace flat_land.gameManager
         UI_Manager uI_Manager = null;
         [SerializeField] InteractionPopUp interactPopUp = null;
         [SerializeField] DialogueReader dialogueReader = null;
+        [SerializeField] LevelController levelController = null;
         public GameState state;
 
         private void Awake()
@@ -26,6 +28,15 @@ namespace flat_land.gameManager
                 uI_Manager.handleDialogue(step);
             };
 
+            dialogueReader.onFinished += (step, b) =>
+            {
+                uI_Manager.handleDialogueFinished(step, b); 
+            };
+
+            if (state == GameState.deuxD)
+            {
+                levelController.onPlayerHit += () => LooseMiniGame();
+            }
 
             Cursor.visible = false;
         }
@@ -56,13 +67,17 @@ namespace flat_land.gameManager
                     LooseMiniGame();
                 }
             };
-            interactPopUp.onInteract += (txt) => uI_Manager.ShowPopUp(txt);
-            interactPopUp.onStopInteract += () => uI_Manager.HidePopUp();
+
+            if (interactPopUp != null)
+            {
+                interactPopUp.onInteract += (txt) => uI_Manager.ShowPopUp(txt);
+                interactPopUp.onStopInteract += () => uI_Manager.HidePopUp();
+            }
         }
 
         private void LooseMiniGame()
         {
-            Debug.Log("YouLooseThis");
+            dialogueReader.GetLooseDialogue();
         }
 
         public static void LoadNextScene(GameState state)
