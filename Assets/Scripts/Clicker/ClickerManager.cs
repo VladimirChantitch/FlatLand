@@ -1,3 +1,4 @@
+using camera;
 using flat_land.gameManager;
 using flat_land.player;
 using System;
@@ -27,6 +28,7 @@ namespace flat_land.clicker
         public float playerSize;
         public float kingSize;
         public float targetSize;
+        [SerializeField] CameraShake cameraShake;
 
         public void NotifyKingSize(float size)
         {
@@ -36,6 +38,7 @@ namespace flat_land.clicker
 
         public void NotifyPlayerSize(float size) 
         {
+            cameraShake.ShakeCamera(1.5f, 0.2f, 1f);
             playerSize = size;
             CheckWhoWon();
         }
