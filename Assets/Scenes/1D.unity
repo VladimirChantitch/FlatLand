@@ -1447,7 +1447,7 @@ MonoBehaviour:
   suit: {fileID: 1283358933}
   canGrow: 1
   suitOffset: 0
-  growAmount: 0.05
+  growAmount: 0.06
 --- !u!1 &1759838181
 GameObject:
   m_ObjectHideFlags: 0
