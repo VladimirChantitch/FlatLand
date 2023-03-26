@@ -23,7 +23,7 @@ namespace flat_land.UI
 
         public void Init()
         {
-            btn_start = currentRoot.Q<Button>("Start");
+            btn_start = currentRoot.Q<Button>("b");
 
             btn_start.clicked += () => onStartGame.Invoke();
         }

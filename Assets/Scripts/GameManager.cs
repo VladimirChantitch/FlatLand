@@ -21,17 +21,20 @@ namespace flat_land.gameManager
 
         private void Awake()
         {
-            uI_Manager = GetComponentInChildren<UI_Manager>();
-            dialogueReader = Instantiate(dialogueReader);
-            dialogueReader.onDialogueSelected += (step) =>
+            if (dialogueReader != null)
             {
-                uI_Manager.handleDialogue(step);
-            };
+                dialogueReader = Instantiate(dialogueReader);
+                dialogueReader.onDialogueSelected += (step) =>
+                {
+                    uI_Manager.handleDialogue(step);
+                };
 
-            dialogueReader.onFinished += (step, b) =>
-            {
-                uI_Manager.handleDialogueFinished(step, b); 
-            };
+                dialogueReader.onFinished += (step, b) =>
+                {
+                    uI_Manager.handleDialogueFinished(step, b);
+                };
+            }
+            uI_Manager = GetComponentInChildren<UI_Manager>();
 
             if (state == GameState.deuxD)
             {
@@ -55,7 +58,10 @@ namespace flat_land.gameManager
 
         private void HandleDialogue()
         {
-             dialogueReader.GetNextDialogue(state);
+            if (dialogueReader != null)
+            {
+                dialogueReader.GetNextDialogue(state);
+            }
         }
 
         private void InitEvents()
