@@ -17,6 +17,8 @@ namespace flat_land.dialogue
 
         public event Action<DialogueStep> onDialogueSelected;
         public event Action<DialogueStep, bool> onFinished;
+
+        bool alredyCalled = false;
         
         public void GetNextDialogue(GameState state)
         {
@@ -34,19 +36,19 @@ namespace flat_land.dialogue
                     GetNextDialogue();
                     break;
                 case GameState.troisD:
+                    if (alredyCalled) return;
                     switch (DmensionalGod.GetSuccessCounter())
                     {
                         case 0:
-                            onDialogueSelected?.Invoke(dialogueSteps[0]);
-                            break;
-                        case 1:
-                            //onDialogueSelected?.Invoke(dialogueSteps[1]);
-                            break;
-                        case 2:
-                            //onDialogueSelected?.Invoke(dialogueSteps[2]);
+                            if (DmensionalGod.introPlayed == false)
+                            {                     
+                                alredyCalled = true;
+                                DmensionalGod.introPlayed = true;
+                                onDialogueSelected?.Invoke(dialogueSteps[0]);
+                                break;
+                            }
                             break;
                         case 3:
-                            onDialogueSelected?.Invoke(dialogueSteps[3]);
                             break;
                     }
                     break;
@@ -56,6 +58,7 @@ namespace flat_land.dialogue
         public void GetNextDialogue()
         {
             if (dialogueSteps.Count == 0) return;
+            if (currentDialogue > dialogueSteps.Count - 1) return;
             if (dialogueSteps.Count < currentDialogue) GetWinDialogue();
             onDialogueSelected?.Invoke(dialogueSteps[currentDialogue]);
             currentDialogue += 1;

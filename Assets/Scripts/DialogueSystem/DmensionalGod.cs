@@ -1,17 +1,22 @@
+using flat_land.gameManager;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DmensionalGod : MonoBehaviour
 {
-    [SerializeField] static int successCounter;
-    [SerializeField] static int maxSuccess;
+    [SerializeField] static int successCounter = 0;
+    [SerializeField] static int maxSuccess = 3;
+
+    [SerializeField] public static bool introPlayed = false;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        IsAllSuccessfull();
     }
     
     public static void IncreaseSuccessCounter()
@@ -24,12 +29,15 @@ public class DmensionalGod : MonoBehaviour
         return successCounter;
     }
 
-    public static bool IsAllSuccessfull()
+    public  void IsAllSuccessfull()
     {
-        if (successCounter >= maxSuccess)
+        GameManager g = FindObjectOfType<GameManager>();
+        if (g.state == GameState.troisD)
         {
-            return true;
+            if (successCounter >= maxSuccess)
+            {
+                SceneManager.LoadScene("Tribunal");
+            }
         }
-        return false;
     }
 }

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd25708705dbfe84397a09dcff551dae, type: 3}
   m_Name: EndlessReader
   m_EditorClassIdentifier: 
-  dialogueSteps: []
+  dialogueSteps:
+  - {fileID: 11400000, guid: 4a8f579faf519de418e6572380a8cfcd, type: 2}
+  - {fileID: 11400000, guid: 063b0dce21423c24f944e8b081fda125, type: 2}
   win: {fileID: 11400000, guid: ab8e3ca8ee2963d41b90f14b8f90b949, type: 2}
   loose: {fileID: 11400000, guid: 7480e5e486ad427479ec976cbaa0bd04, type: 2}
   currentDialogue: 0

@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="loose_win" src="project://database/Assets/Scripts/UI/loose_win.uxml?fileID=9197481963319205126&amp;guid=da0c698cd4db0c1408cb2feb0c693e67&amp;type=3#loose_win" />
+    <ui:Instance template="loose_win" name="loose_win" style="flex-grow: 1; position: relative; display: flex;" />
+    <ui:VisualElement name="buttons" style="flex-direction: row; flex-grow: 1; flex-wrap: nowrap; align-items: stretch; justify-content: space-around; bottom: 0; height: 0;">
+        <ui:Button display-tooltip-when-elided="true" name="left" style="flex-grow: 1; background-color: rgba(88, 88, 88, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;" />
+        <ui:Button display-tooltip-when-elided="true" name="right" style="flex-grow: 1; background-color: rgba(88, 88, 88, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+    </ui:VisualElement>
+</ui:UXML>

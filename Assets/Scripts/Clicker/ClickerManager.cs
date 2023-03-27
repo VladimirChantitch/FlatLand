@@ -29,6 +29,7 @@ namespace flat_land.clicker
         public float kingSize;
         public float targetSize;
         [SerializeField] CameraShake cameraShake;
+        bool isFInished = false;
 
         public void NotifyKingSize(float size)
         {
@@ -45,15 +46,18 @@ namespace flat_land.clicker
 
         private void CheckWhoWon()
         {
-            if (kingSize >= targetSize || playerSize >= targetSize)
+            if (isFInished == false) 
             {
-                if (kingSize > playerSize)
+                if (kingSize >= targetSize || playerSize >= targetSize)
                 {
-                    onClickerFiinished?.Invoke(true);
-                }
-                else
-                {
-                    onClickerFiinished?.Invoke(false);
+                    if (kingSize > playerSize)
+                    {
+                        onClickerFiinished?.Invoke(false);
+                    }
+                    else
+                    {
+                        onClickerFiinished?.Invoke(true);
+                    }
                 }
             }
         }

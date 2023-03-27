@@ -17,6 +17,7 @@ namespace flat_land.dialogue
             public DialogueType type;
             public bool isGoodAnswer;
             public Sprite dialogueSprite;
+            public AudioClip audio;
         }
     }
     public enum DialogueType { Answerable, Solo}

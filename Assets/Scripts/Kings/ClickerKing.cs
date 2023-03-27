@@ -62,7 +62,7 @@ namespace flat_land.kings
             while (isGrowing)
             {
                 Grow(growRate);
-                growSpeed *= 0.95f;
+                growSpeed *= 0.97f;
                 yield return new WaitForSeconds(growSpeed);
             }
         }
@@ -70,7 +70,6 @@ namespace flat_land.kings
         public void StopGrowing(bool kingGrow)
         {
             isGrowing = false;
-            GameManager.GoBackToHub();
         }
     }
 }

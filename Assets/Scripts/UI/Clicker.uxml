@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="loose_win" src="project://database/Assets/Scripts/UI/loose_win.uxml?fileID=9197481963319205126&amp;guid=da0c698cd4db0c1408cb2feb0c693e67&amp;type=3#loose_win" />
+    <Style src="project://database/Assets/Scripts/UI/style.uss?fileID=7433441132597879392&amp;guid=596e2c7fec270084dbf19610828569f5&amp;type=3#style" />
+    <ui:Instance template="loose_win" name="loose_win" style="flex-grow: 1;" />
+</ui:UXML>

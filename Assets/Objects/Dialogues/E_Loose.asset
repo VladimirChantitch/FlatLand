@@ -16,4 +16,5 @@ MonoBehaviour:
     type: 1
     isGoodAnswer: 0
     dialogueSprite: {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
+    audio: {fileID: 8300000, guid: f8129ba6cfce23941b67460212634066, type: 3}
   Answers: []

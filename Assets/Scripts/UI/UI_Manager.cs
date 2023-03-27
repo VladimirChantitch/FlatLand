@@ -22,10 +22,15 @@ namespace flat_land.UI
         Button backToHubWin = null;
         Button backToHubLoose = null;
 
-        Button endDialogue = null;
+        Sprite[] l_w = new Sprite[2];
 
         public event Action<GameState> onLoadNewScene;
         public event Action<bool> onAnsweredDialgue;
+
+        public event Action<bool> hasChooseLeft;
+
+        Button rightButton = null;
+        Button leftButton = null;
 
         private void Awake()
         {
@@ -45,15 +50,12 @@ namespace flat_land.UI
                 hub.Init(currentRoot);
             }
 
-            if (state == GameState.deuxD)
+            if (state == GameState.deuxD || state == GameState.unD || state == GameState.zeroD)
             {
                 backToHubLoose = currentRoot.Q<Button>("backToHubLoose");
                 backToHubWin = currentRoot.Q<Button>("backToHubWin");
 
-                endDialogue = currentRoot.Q<Button>("dialogue");
-
                 backToHubWin.clicked += () => {
-                    DmensionalGod.IncreaseSuccessCounter();
                     onLoadNewScene?.Invoke(GameState.troisD);        
                 };
                 backToHubLoose.clicked += () => onLoadNewScene?.Invoke(GameState.troisD);
@@ -71,6 +73,15 @@ namespace flat_land.UI
                         dialogue.onTrueAnswer += () => onAnsweredDialgue?.Invoke(true);
                     }
                 }
+            }
+
+            if (state == GameState.zeroD)
+            {
+                rightButton = currentRoot.Q<Button>("right");
+                leftButton = currentRoot.Q<Button>("left");
+
+                rightButton.clicked += () => { hasChooseLeft?.Invoke(false); };
+                leftButton.clicked += () => { hasChooseLeft?.Invoke(true); };
             }
         }
 
@@ -102,20 +113,35 @@ namespace flat_land.UI
 
         internal void handleDialogueFinished(DialogueStep step, bool b)
         {
-            if (b)
+            if (state  == GameState.zeroD)
             {
-                backToHubWin.style.display = DisplayStyle.Flex;
-                endDialogue.style.display = DisplayStyle.Flex;
-                StyleBackground sstyle = new StyleBackground(step.npc.dialogueSprite);
-                endDialogue.style.backgroundImage = sstyle;
+                if (b)
+                {
+                    StyleBackground ss = new StyleBackground(l_w[1]);
+                    backToHubWin.style.backgroundImage = ss;
+                    backToHubWin.style.display = DisplayStyle.Flex;
+                    currentRoot.Q<VisualElement>("buttons").style.display = DisplayStyle.None;
+                }
+                else
+                {
+                    StyleBackground ss = new StyleBackground(l_w[0]);
+                    backToHubWin.style.backgroundImage = ss;
+                    backToHubLoose.style.display = DisplayStyle.Flex;
+                    currentRoot.Q<VisualElement>("buttons").style.display = DisplayStyle.None;
+                }
             }
             else
             {
-                backToHubLoose.style.display = DisplayStyle.Flex;
-                endDialogue.style.display = DisplayStyle.Flex;  
-                StyleBackground sstyle = new StyleBackground(step.npc.dialogueSprite);
-                endDialogue.style.backgroundImage = sstyle;
+                if (b)
+                {
+                    backToHubWin.style.display = DisplayStyle.Flex;
+                }
+                else
+                {
+                    backToHubLoose.style.display = DisplayStyle.Flex;
+                }
             }
+
         }
     }
 }

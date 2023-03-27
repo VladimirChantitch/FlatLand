@@ -80,6 +80,15 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""344b3bb0-048a-428a-9482-e7580c7f643b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""action"": ""LesPointsSurLesI"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4aecbb4-1be3-432a-8c8a-ec74d966a281"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +226,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         m_Actions_Bar = m_Actions.FindAction("Bar", throwIfNotFound: true);
         m_Actions_Look = m_Actions.FindAction("Look", throwIfNotFound: true);
         m_Actions_LesPointsSurLesI = m_Actions.FindAction("LesPointsSurLesI", throwIfNotFound: true);
+        m_Actions_escape = m_Actions.FindAction("escape", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -271,6 +292,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Bar;
     private readonly InputAction m_Actions_Look;
     private readonly InputAction m_Actions_LesPointsSurLesI;
+    private readonly InputAction m_Actions_escape;
     public struct ActionsActions
     {
         private @Inputs m_Wrapper;
@@ -281,6 +303,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         public InputAction @Bar => m_Wrapper.m_Actions_Bar;
         public InputAction @Look => m_Wrapper.m_Actions_Look;
         public InputAction @LesPointsSurLesI => m_Wrapper.m_Actions_LesPointsSurLesI;
+        public InputAction @escape => m_Wrapper.m_Actions_escape;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -308,6 +331,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @LesPointsSurLesI.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLesPointsSurLesI;
                 @LesPointsSurLesI.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLesPointsSurLesI;
                 @LesPointsSurLesI.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLesPointsSurLesI;
+                @escape.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnEscape;
+                @escape.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnEscape;
+                @escape.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnEscape;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -330,6 +356,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @LesPointsSurLesI.started += instance.OnLesPointsSurLesI;
                 @LesPointsSurLesI.performed += instance.OnLesPointsSurLesI;
                 @LesPointsSurLesI.canceled += instance.OnLesPointsSurLesI;
+                @escape.started += instance.OnEscape;
+                @escape.performed += instance.OnEscape;
+                @escape.canceled += instance.OnEscape;
             }
         }
     }
@@ -342,5 +371,6 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         void OnBar(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnLesPointsSurLesI(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
     }
 }

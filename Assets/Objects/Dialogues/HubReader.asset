@@ -14,9 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueSteps:
   - {fileID: 11400000, guid: d7ca7c1cdb312414e9052a81bb4802a6, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: beab62daa2c4a23428915e6c7d083a8d, type: 2}
   win: {fileID: 0}
   loose: {fileID: 0}
   currentDialogue: 0

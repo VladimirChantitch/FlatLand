@@ -17,6 +17,9 @@ namespace flat_land.gameManager
         [SerializeField] InteractionPopUp interactPopUp = null;
         [SerializeField] DialogueReader dialogueReader = null;
         [SerializeField] LevelController levelController = null;
+        [SerializeField] ClickerManager clickerManager = null;
+        [SerializeField] AudioSource audioSource = null;
+        [SerializeField] zero_man z = null;
         public GameState state;
 
         private void Awake()
@@ -26,12 +29,22 @@ namespace flat_land.gameManager
                 dialogueReader = Instantiate(dialogueReader);
                 dialogueReader.onDialogueSelected += (step) =>
                 {
+                    audioSource.Stop();
                     uI_Manager.handleDialogue(step);
+                    if (state == GameState.zeroD)
+                    {
+                        PlayAudioClip(step.npc.audio, true);
+                    }
+                    else
+                    {
+                        PlayAudioClip(step.npc.audio);
+                    }
                 };
 
                 dialogueReader.onFinished += (step, b) =>
                 {
                     uI_Manager.handleDialogueFinished(step, b);
+                    PlayAudioClip(step.npc.audio);
                 };
             }
             uI_Manager = GetComponentInChildren<UI_Manager>();
@@ -42,11 +55,92 @@ namespace flat_land.gameManager
                 levelController.onPlayerWin += () => WinMiniGame();
             }
 
+            if (state == GameState.unD)
+            {
+                clickerManager.onClickerFiinished.AddListener( (b) =>
+                {
+                    if (b)
+                    {
+                        WinMiniGame();
+                    }
+                    else
+                    {
+                        LooseMiniGame();
+                    }
+                });
+            }
+
+            if(state == GameState.zeroD)
+            {
+                uI_Manager.hasChooseLeft += b => z.PlayNext(b, (b) =>
+                {
+                    if (b)
+                    {
+                        WinMiniGame();
+                    }
+                    else
+                    {
+                        LooseMiniGame();
+                    }
+                });
+            }
+
             Cursor.visible = false;
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                switch (state)
+                {
+                    case GameState.start:
+                        Application.Quit();
+                        break;
+                    case GameState.zeroD:
+                        LoadNextScene(GameState.start);
+                        break;
+                    case GameState.unD:
+                        LoadNextScene(GameState.start);
+                        break;
+                    case GameState.deuxD:
+                        LoadNextScene(GameState.start);
+                        break;
+                    case GameState.troisD:
+                        LoadNextScene(GameState.start);
+                        break;
+                }
+            }
+        }
+
+        private void PlayAudioClip(AudioClip audio, bool solo = false)
+        {
+            audioSource.Stop();
+            if (state == GameState.zeroD) 
+            {
+                float audioLength = audio.length;
+                audioSource.PlayOneShot(audio);
+                if (solo) return;
+                StartCoroutine(PlayNextAudioCor(audioLength));
+            }
+            else
+            {
+                float audioLength = audio.length;
+                audioSource.PlayOneShot(audio);
+                if (solo) return;
+                StartCoroutine(PlayNextAudioCor(audioLength));
+            }
+        }
+
+        IEnumerator PlayNextAudioCor(float timer)
+        {
+            yield return new WaitForSeconds(timer + 0.25f);
+            HandleDialogue();
         }
 
         private void WinMiniGame()
         {
+            DmensionalGod.IncreaseSuccessCounter();
             dialogueReader.GetWinDialogue();
         }
 
@@ -54,6 +148,11 @@ namespace flat_land.gameManager
         {
             InitEvents();
             HandleDialogue();
+        }
+
+        public void PlayNextDialogue1D()
+        {
+            dialogueReader.GetNextDialogue(state);
         }
 
         private void HandleDialogue()
