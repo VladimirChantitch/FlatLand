@@ -352,33 +352,57 @@ MonoBehaviour:
   - isLeft: 0
     sprite: {fileID: 21300000, guid: d214c2acecef2ea47825a855420fb7e7, type: 3}
     clip: {fileID: 8300000, guid: 83781be32d8d87645927069eace6bce9, type: 3}
-    hasanwer: 0
+    hasanswer: 0
   - isLeft: 0
     sprite: {fileID: 21300000, guid: 9deecefe2ee23b846af54c0369adf886, type: 3}
     clip: {fileID: 8300000, guid: 1ce21de85200e6540bd948f4b48b4e39, type: 3}
-    hasanwer: 0
+    hasanswer: 0
+  - isLeft: 1
+    sprite: {fileID: 21300000, guid: fd4b01ef8f0d3c644923296811b7aa5b, type: 3}
+    clip: {fileID: 8300000, guid: 24052525ed95c4b4f91173f2d0f1aa74, type: 3}
+    hasanswer: 0
   - isLeft: 1
     sprite: {fileID: 21300000, guid: 0c562372a3ff9ed489bb217f5306e321, type: 3}
-    clip: {fileID: 8300000, guid: 24052525ed95c4b4f91173f2d0f1aa74, type: 3}
-    hasanwer: 1
+    clip: {fileID: 0}
+    hasanswer: 1
   - isLeft: 0
     sprite: {fileID: 21300000, guid: 83aff7800e974f8408aab204a95a9a2a, type: 3}
     clip: {fileID: 8300000, guid: 071e586f07c2e83418f11c13fff0d560, type: 3}
-    hasanwer: 0
+    hasanswer: 0
+  - isLeft: 0
+    sprite: {fileID: 21300000, guid: 5bc19d3c79865434681be5c68793a67c, type: 3}
+    clip: {fileID: 8300000, guid: 880c3a0d171c10941b63dbd15da0bca0, type: 3}
+    hasanswer: 0
   - isLeft: 1
     sprite: {fileID: 21300000, guid: 5cacbf3354642c84ea6b0fa8310b1525, type: 3}
-    clip: {fileID: 8300000, guid: 880c3a0d171c10941b63dbd15da0bca0, type: 3}
-    hasanwer: 1
+    clip: {fileID: 0}
+    hasanswer: 1
+  - isLeft: 1
+    sprite: {fileID: 21300000, guid: 78df49ebcb1e70b4fb54b42b2df2d7d9, type: 3}
+    clip: {fileID: 8300000, guid: 4eb32fdd0cd893a44a1f23f50dc10051, type: 3}
+    hasanswer: 0
   - isLeft: 1
     sprite: {fileID: 21300000, guid: f19a76ce3c266424ca14776ddd82f2fb, type: 3}
-    clip: {fileID: 8300000, guid: 4eb32fdd0cd893a44a1f23f50dc10051, type: 3}
-    hasanwer: 1
+    clip: {fileID: 0}
+    hasanswer: 1
   - isLeft: 1
     sprite: {fileID: 21300000, guid: 3c2067e95b324e3478ba450f78e7a4d1, type: 3}
     clip: {fileID: 8300000, guid: 258ecfb58e0b093479c2d830e687bacb, type: 3}
-    hasanwer: 1
+    hasanswer: 1
   audioSource: {fileID: 2020406032}
   bg_sr: {fileID: 1471779781}
+  uIDocument: {fileID: 156946529}
+--- !u!114 &156946529 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1454635520309982556, guid: 8a73dbf667a9e384d9aaa39cca0ef7e4, type: 3}
+  m_PrefabInstance: {fileID: 156946526}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &763396675
 GameObject:
   m_ObjectHideFlags: 0

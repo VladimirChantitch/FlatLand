@@ -50,7 +50,7 @@ namespace flat_land.UI
                 hub.Init(currentRoot);
             }
 
-            if (state == GameState.deuxD || state == GameState.unD || state == GameState.zeroD)
+            if (state == GameState.deuxD || state == GameState.unD)
             {
                 backToHubLoose = currentRoot.Q<Button>("backToHubLoose");
                 backToHubWin = currentRoot.Q<Button>("backToHubWin");
@@ -113,24 +113,6 @@ namespace flat_land.UI
 
         internal void handleDialogueFinished(DialogueStep step, bool b)
         {
-            if (state  == GameState.zeroD)
-            {
-                if (b)
-                {
-                    StyleBackground ss = new StyleBackground(l_w[1]);
-                    backToHubWin.style.backgroundImage = ss;
-                    backToHubWin.style.display = DisplayStyle.Flex;
-                    currentRoot.Q<VisualElement>("buttons").style.display = DisplayStyle.None;
-                }
-                else
-                {
-                    StyleBackground ss = new StyleBackground(l_w[0]);
-                    backToHubWin.style.backgroundImage = ss;
-                    backToHubLoose.style.display = DisplayStyle.Flex;
-                    currentRoot.Q<VisualElement>("buttons").style.display = DisplayStyle.None;
-                }
-            }
-            else
             {
                 if (b)
                 {
@@ -141,7 +123,6 @@ namespace flat_land.UI
                     backToHubLoose.style.display = DisplayStyle.Flex;
                 }
             }
-
         }
     }
 }

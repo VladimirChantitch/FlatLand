@@ -1,138 +1,128 @@
+using flat_land.gameManager;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class zero_man : MonoBehaviour
 {
     [SerializeField] List<ScreensLogic> screens = new List<ScreensLogic>();
     [SerializeField] AudioSource audioSource;
     [SerializeField] SpriteRenderer bg_sr;
-    int cursor;
+    [SerializeField] UIDocument uIDocument;
 
-    bool canAnswer;
+    zero_ui zui;
 
     private void Start()
     {
-        PlayFirst();
-        Cursor.visible = true;
+        UnityEngine.Cursor.visible = true;
     }
 
     private void OnEnable()
     {
-        Cursor.visible = true;
+        UnityEngine.Cursor.visible = true;
+        zui = uIDocument.rootVisualElement.Q<zero_ui>();
+        zui.Init(bg_sr, audioSource);
+        BindEvents();
+        PlayNext();
     }
 
-    private void PlayFirst()
+    private void BindEvents()
     {
-        bg_sr.sprite = screens[0].sprite;
-        audioSource.PlayOneShot(screens[0].clip);
+        zui.onCLickLeave += () => SceneManager.LoadScene("3D");
+        zui.onPickLeft += () => CheckIfLeftTrue();
+        zui.onPickRight += () => CheckIfRightTrue();
+        zui.onSkip += () => Skip();
+        zui.onTimerStarted += (f) => StartTimer(f);
+    }
 
-        if (!screens[0].hasanwer)
+    int cursor = 0;
+    ScreensLogic logic = null;
+
+    private void PlayNext()
+    {
+        logic = screens[cursor];
+        zui.SetNextScreen(logic);
+        cursor++;   
+    }
+
+    private void Skip()
+    {
+        if (logic.hasanswer == false)
         {
-            canAnswer = false;
-            StartCoroutine(DelaySignal(screens[0].clip.length));
+            PlayNext();
         }
     }
 
-    IEnumerator DelaySignal(float timer)
+    private void CheckIfRightTrue()
     {
-        Debug.Log(cursor+ " " + timer);
-        yield return new WaitForSeconds(timer);
-        ok = true;
+        if (logic.isLeft)
+        {
+            zui.ShowLooseWinScreen(true); return;
+        }
+        if (screens.Count == cursor + 1)
+        {
+            zui.ShowLooseWinScreen(false); return;
+        }
+        else
+        {
+            PlayNext();
+        }
     }
 
-    bool ok;
-    float timer = 18f;
-    float time;
-    bool canIt = true;
+    private void CheckIfLeftTrue()
+    {
+        if (!logic.isLeft)
+        {
+            zui.ShowLooseWinScreen(true); return;
+        }
+        if (screens.Count == cursor + 1)
+        {
+            zui.ShowLooseWinScreen(false); return;
+        }
+        else
+        {
+            PlayNext();
+        }
+    }
+
+    Coroutine cor = null;
+    bool timerFinished;
+
+    private void StartTimer(float f)
+    {
+        if (cor != null)
+        {
+            StopCoroutine(cor);
+        }
+        cor = StartCoroutine(timer(f));
+    }
 
     private void Update()
     {
-        if (ok)
+        if (timerFinished)
         {
-            ok = false;
-            PlayNext();
-        }
-
-        if (cursor == 3 && time == 0 && canIt == true)
-        {
-            canIt = false;
-            time = Time.time;
-        }
-        
-        if (cursor == 3 && time + timer <= Time.time && canIt == false)
-        {
-            timer = 0;
+            timerFinished = false;
             PlayNext();
         }
     }
 
-    public void PlayNext()
+    IEnumerator timer(float f)
     {
-        Cursor.visible = true;
-        audioSource.Stop();
-        cursor += 1;
-        bg_sr.sprite = screens[cursor].sprite;
-        audioSource.PlayOneShot(screens[cursor].clip);
-        canAnswer = true;
-
-        if (!screens[cursor].hasanwer)
-        {
-            Debug.Log(cursor);
-            StartCoroutine(DelaySignal(screens[cursor].clip.length));
-            canAnswer = false;
-            return;
-        }
-    }
-
-    public void PlayNext(bool isLeft, Action<bool> action = null)
-    {
-        Cursor.visible = true;
-        audioSource.Stop();
-        bool isTrue = isLeft == screens[cursor].isLeft;
-
-        Debug.Log("airuabrhnogf____" + cursor);
-
-        if (canAnswer == false) return;
-
-        if (!screens[cursor].hasanwer)
-        {
-            StartCoroutine(DelaySignal(screens[cursor].clip.length));
-            canAnswer = false;
-            return;
-        }
-        else
-        {
-            canAnswer = true;
-        }
-
-        if (!isTrue)
-        {
-            action?.Invoke(isTrue);
-        }
-        else
-        {
-            if (cursor + 1 >= screens.Count)
-            {
-                action?.Invoke(isTrue);
-            }
-            else
-            {
-                cursor += 1;
-                bg_sr.sprite = screens[cursor].sprite;
-                audioSource.PlayOneShot(screens[cursor].clip);
-            }
-        }
-    }
-
-    [Serializable]
-    public class ScreensLogic
-    {
-        public bool isLeft;
-        public Sprite sprite; 
-        public AudioClip clip;
-        public bool hasanwer;
+        yield return new WaitForSeconds(f);
+        timerFinished = true;
     }
 }
+[Serializable]
+public class ScreensLogic
+{
+    public bool isLeft;
+    public Sprite sprite;
+    public AudioClip clip;
+    public bool hasanswer;
+}
+

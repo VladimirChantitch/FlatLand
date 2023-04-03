@@ -70,21 +70,6 @@ namespace flat_land.gameManager
                 });
             }
 
-            if(state == GameState.zeroD)
-            {
-                uI_Manager.hasChooseLeft += b => z.PlayNext(b, (b) =>
-                {
-                    if (b)
-                    {
-                        WinMiniGame();
-                    }
-                    else
-                    {
-                        LooseMiniGame();
-                    }
-                });
-            }
-
             Cursor.visible = false;
         }
 

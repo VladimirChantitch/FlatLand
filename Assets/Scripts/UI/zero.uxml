@@ -1,8 +1,19 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="loose_win" src="project://database/Assets/Scripts/UI/loose_win.uxml?fileID=9197481963319205126&amp;guid=da0c698cd4db0c1408cb2feb0c693e67&amp;type=3#loose_win" />
-    <ui:Instance template="loose_win" name="loose_win" style="flex-grow: 1; position: relative; display: flex;" />
-    <ui:VisualElement name="buttons" style="flex-direction: row; flex-grow: 1; flex-wrap: nowrap; align-items: stretch; justify-content: space-around; bottom: 0; height: 0;">
-        <ui:Button display-tooltip-when-elided="true" name="left" style="flex-grow: 1; background-color: rgba(88, 88, 88, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;" />
-        <ui:Button display-tooltip-when-elided="true" name="right" style="flex-grow: 1; background-color: rgba(88, 88, 88, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
-    </ui:VisualElement>
+    <Style src="project://database/Assets/Scripts/UI/style.uss?fileID=7433441132597879392&amp;guid=596e2c7fec270084dbf19610828569f5&amp;type=3#style" />
+    <zero_ui style="flex-grow: 1;">
+        <ui:VisualElement name="Skip" style="align-items: flex-end;">
+            <ui:Button text="SKIP" display-tooltip-when-elided="true" name="btn_skip" class="btn" style="height: 150px; width: 25%; font-size: 42px; -unity-font-style: bold-and-italic; background-color: rgb(29, 29, 29); border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-left-color: rgb(123, 123, 123); border-right-color: rgb(123, 123, 123); border-top-color: rgb(123, 123, 123); border-bottom-color: rgb(123, 123, 123); color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="loose_win" style="flex-grow: 1;">
+            <ui:Button display-tooltip-when-elided="true" name="bl" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Asset2D/Flatland_loose.png?fileID=21300000&amp;guid=36ff3484eaa4dec438b1439ac8032551&amp;type=3#Flatland_loose&apos;); display: none;" />
+            <ui:Button display-tooltip-when-elided="true" name="bg" style="flex-grow: 1; background-color: rgb(87, 87, 87); background-image: url(&apos;project://database/Assets/Asset2D/Flatland_WIN.png?fileID=21300000&amp;guid=2310c9b3e884ece41ae51bdb05d103e8&amp;type=3#Flatland_WIN&apos;); display: none;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="buttons" style="flex-direction: row; flex-grow: 1; flex-wrap: nowrap; align-items: stretch; justify-content: space-around; bottom: 0; height: 0;">
+            <ui:Button display-tooltip-when-elided="true" name="left" class="btn" style="flex-grow: 1; background-color: rgba(88, 88, 88, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;" />
+            <ui:Button display-tooltip-when-elided="true" name="right" class="btn" style="flex-grow: 1; background-color: rgba(88, 88, 88, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Progresse" style="background-color: rgb(255, 255, 255); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; border-top-left-radius: 3px; border-bottom-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; flex-grow: 0;">
+            <ui:ProgressBar value="0" title="   " name="progress" style="background-color: rgb(255, 255, 255); flex-grow: 1;" />
+        </ui:VisualElement>
+    </zero_ui>
 </ui:UXML>
