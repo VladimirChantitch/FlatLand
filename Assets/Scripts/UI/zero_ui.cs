@@ -77,22 +77,21 @@ public class zero_ui : VisualElement
 
     public void ShowLooseWinScreen(bool isLoose, AudioClip clip)
     {
+        SkipContainer.style.display = DisplayStyle.None;
+        ProgressContainer.style.display = DisplayStyle.None;
+        ChoiceContainer.style.display = DisplayStyle.None;
         if (isLoose)
         {
-            audioSource.Stop();
             bl.style.display = DisplayStyle.Flex;
-            audioSource.PlayOneShot(clip);
         }
         else
         {
-            audioSource.Stop();
             bg.style.display = DisplayStyle.Flex;
-            audioSource.PlayOneShot(clip);
-        }
+            DmensionalGod.IncreaseSuccessCounter(0);
 
-        contentContainer.style.display = DisplayStyle.None;
-        ProgressContainer.style.display = DisplayStyle.None;
-        ChoiceContainer.style.display = DisplayStyle.None;
+        }
+        audioSource.Stop();
+        audioSource.PlayOneShot(clip);
     }
 
     public void UpdateProgresse(float currentTime)

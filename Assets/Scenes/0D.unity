@@ -348,6 +348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20ab11b187e6d7c40acad98bd4edabd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winClip: {fileID: 8300000, guid: 32ff873e4de09bc42a67715e14f9e2fe, type: 3}
+  looseClip: {fileID: 8300000, guid: 14b04d825f10d2b4ea7b9cb4a3667b5d, type: 3}
   screens:
   - isLeft: 0
     sprite: {fileID: 21300000, guid: d214c2acecef2ea47825a855420fb7e7, type: 3}

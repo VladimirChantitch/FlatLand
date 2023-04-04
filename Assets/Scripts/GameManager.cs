@@ -125,7 +125,21 @@ namespace flat_land.gameManager
 
         private void WinMiniGame()
         {
-            DmensionalGod.IncreaseSuccessCounter();
+            int dim = 3;
+            switch (state)
+            {
+                case GameState.zeroD:
+                    dim = 0;
+                    break;
+                case GameState.unD:
+                    dim = 1;
+                    break;
+                case GameState.deuxD:
+                    dim = 2;
+                    break;
+            }
+
+            DmensionalGod.IncreaseSuccessCounter(dim);
             dialogueReader.GetWinDialogue();
         }
 
