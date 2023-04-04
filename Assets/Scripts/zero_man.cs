@@ -10,6 +10,8 @@ using UnityEngine.UIElements;
 
 public class zero_man : MonoBehaviour
 {
+    [SerializeField] private AudioClip winClip;
+    [SerializeField] private AudioClip looseClip;
     [SerializeField] List<ScreensLogic> screens = new List<ScreensLogic>();
     [SerializeField] AudioSource audioSource;
     [SerializeField] SpriteRenderer bg_sr;
@@ -62,11 +64,11 @@ public class zero_man : MonoBehaviour
     {
         if (logic.isLeft)
         {
-            zui.ShowLooseWinScreen(true); return;
+            zui.ShowLooseWinScreen(true, looseClip); return;
         }
         if (screens.Count == cursor + 1)
         {
-            zui.ShowLooseWinScreen(false); return;
+            zui.ShowLooseWinScreen(false, winClip); return;
         }
         else
         {
@@ -78,11 +80,11 @@ public class zero_man : MonoBehaviour
     {
         if (!logic.isLeft)
         {
-            zui.ShowLooseWinScreen(true); return;
+            zui.ShowLooseWinScreen(true, looseClip); return;
         }
         if (screens.Count == cursor + 1)
         {
-            zui.ShowLooseWinScreen(false); return;
+            zui.ShowLooseWinScreen(false, winClip); return;
         }
         else
         {

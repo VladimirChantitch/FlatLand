@@ -75,16 +75,19 @@ public class zero_ui : VisualElement
         progressBar.highValue = maxTime;
     }
 
-    public void ShowLooseWinScreen(bool isLoose)
+    public void ShowLooseWinScreen(bool isLoose, AudioClip clip)
     {
         if (isLoose)
         {
+            audioSource.Stop();
             bl.style.display = DisplayStyle.Flex;
-
+            audioSource.PlayOneShot(clip);
         }
         else
         {
+            audioSource.Stop();
             bg.style.display = DisplayStyle.Flex;
+            audioSource.PlayOneShot(clip);
         }
 
         contentContainer.style.display = DisplayStyle.None;
