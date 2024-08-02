@@ -29,6 +29,7 @@ public class TribunalManager : MonoBehaviour
             creditsScroll.gameObject.SetActive(true);
             uiManager.gameObject.SetActive(false);
             creditsScroll.StartScrolling();
+            audioSource.Stop();
             audioSource.PlayOneShot(endClip);
         };
 

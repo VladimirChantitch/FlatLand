@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d7be485f0cbed40a17ee6f0d950b07, type: 3}
+  m_Name: Question1_
+  m_EditorClassIdentifier: 
+  nextQuestion: {fileID: 11400000, guid: ba9ab6cbde2ec9d41b9e21bcbd3da095, type: 2}
+  audioClip: {fileID: 8300000, guid: 3429cfe76123e604e8aa93bd9d2511b9, type: 3}
+  question: "Jusqu'= quelle puissance pouvez-vous vous \xE9lever dans ce monde ?"
+  answer1: Puissance 4
+  answer2: Puissance 6
+  isAnwser1True: 1
