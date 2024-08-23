@@ -1104,6 +1104,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   chunksPrefabs:
   - {fileID: 4551822197322118141, guid: 39d67a0546511cb40b92df9b67d4f1ba, type: 3}
   - {fileID: 4551822197322118141, guid: 63894230cdb550944a61abfb400bc3e9, type: 3}
@@ -1245,6 +1246,10 @@ PrefabInstance:
     - target: {fileID: 4551822197322118142, guid: 2aaf7d865b322eb4db33df18e5cb11cf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106771308537018841, guid: 2aaf7d865b322eb4db33df18e5cb11cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0018
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2aaf7d865b322eb4db33df18e5cb11cf, type: 3}
